@@ -1,0 +1,42 @@
+
+
+
+Survival_Rate = 
+1 - DIVIDE(
+    SUM(heart_Disease_clinical_records_[DEATH_EVENT]),
+    COUNT(heart_Disease_clinical_records_[count])
+
+
+
+Total_Survival_Rate = 
+CALCULATE(
+    COUNT(heart_Disease_clinical_records_[count]),
+    heart_Disease_clinical_records_[DEATH_EVENT] = 0)
+
+
+
+
+
+Total_Death = 
+CALCULATE(
+    COUNT(heart_Disease_clinical_records_[count]),
+    heart_Disease_clinical_records_[DEATH_EVENT] = 1)
+
+
+
+
+
+
+AGE_GROUP = 
+SWITCH(
+    TRUE(),
+    heart_Disease_clinical_records_[age] >= 40 && heart_Disease_clinical_records_[age] >= 50, "40-50",
+    heart_Disease_clinical_records_[age] >= 40 && heart_Disease_clinical_records_[age] >= 60, "51-60",
+    heart_Disease_clinical_records_[age] >= 40 && heart_Disease_clinical_records_[age] >= 70, "61-70",
+    heart_Disease_clinical_records_[age] >= 70, "71+",
+    "BELLOW 40"
+    )
+
+
+
+Genders = IF(heart_Disease_clinical_records_[sex] = 0,"Female", "Male")
